@@ -1,0 +1,11 @@
+version: 1
+apps:
+  - appDirPath: ./publisher
+    appID: publisher
+    appPort: 5001
+    containerImage: docker.io/bibryam/publisher:latest
+    createService: true
+  - appDirPath: ./subscriber
+    appID: subscriber
+    appPort: 5002
+    containerImage: docker.io/bibryam/subscriber:latest

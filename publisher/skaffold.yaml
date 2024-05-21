@@ -1,0 +1,39 @@
+apiVersion: skaffold/v4beta11
+kind: Config
+metadata:
+  name: publisher
+requires:
+  - path: ../pubsub
+
+build:
+  tagPolicy:
+    inputDigest: { }
+  artifacts:
+    - image: bibryam/publisher
+      docker:
+        dockerfile: Dockerfile
+  local: {}
+
+manifests:
+  rawYaml:
+    - deploy/deployment.yaml
+    - deploy/service.yaml
+
+deploy:
+  kubectl: {}
+  logs:
+    prefix: auto
+    jsonParse:
+      fields: ["time", "msg", "level"]
+
+portForward:
+  - resourceType: deployment
+    resourceName: publisher
+    namespace: default
+    port: 5001
+    localPort: 5001
+  - resourceType: deployment
+    resourceName: publisher
+    namespace: default
+    port: 49911
+    localPort: 5011
