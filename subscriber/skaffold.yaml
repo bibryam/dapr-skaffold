@@ -3,7 +3,7 @@ kind: Config
 metadata:
   name: subscriber
 requires:
-  - path: ../pubsub
+  - path: ../deploy
 
 build:
   tagPolicy:
@@ -23,16 +23,18 @@ deploy:
   logs:
     prefix: auto
     jsonParse:
-      fields: ["time", "msg", "level"]
+      fields: ["time", "@timestamp", "level", "msg", "message"]
 
 portForward:
   - resourceType: deployment
     resourceName: subscriber
-    namespace: default
     port: 5002
     localPort: 5002
   - resourceType: deployment
     resourceName: subscriber
-    namespace: default
-    port: 49912
+    port: 9090
     localPort: 5012
+  - resourceType: deployment
+    resourceName: subscriber
+    port: 3500
+    localPort: 3502

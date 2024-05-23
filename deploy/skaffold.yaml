@@ -6,4 +6,4 @@ manifests:
     - component.yaml
 
 deploy:
-  kubectl: {}
+  kubectl: { }

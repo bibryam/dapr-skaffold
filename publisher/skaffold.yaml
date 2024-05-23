@@ -3,7 +3,7 @@ kind: Config
 metadata:
   name: publisher
 requires:
-  - path: ../pubsub
+  - path: ../deploy
 
 build:
   tagPolicy:
@@ -24,16 +24,18 @@ deploy:
   logs:
     prefix: auto
     jsonParse:
-      fields: ["time", "msg", "level"]
+      fields: ["time", "@timestamp", "level", "msg", "message"]
 
 portForward:
   - resourceType: deployment
     resourceName: publisher
-    namespace: default
     port: 5001
     localPort: 5001
   - resourceType: deployment
     resourceName: publisher
-    namespace: default
-    port: 49911
+    port: 9090
     localPort: 5011
+  - resourceType: deployment
+    resourceName: publisher
+    port: 3500
+    localPort: 3501

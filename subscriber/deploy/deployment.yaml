@@ -13,10 +13,13 @@ spec:
     metadata:
       annotations:
         dapr.io/app-id: subscriber
-        dapr.io/app-port: "5002"
         dapr.io/enabled: "true"
-        dapr.io/enable-api-logging: "true"
-        dapr.io/metrics-port: "49912"
+        dapr.io/app-port: "5002"
+        dapr.io/metrics-port: "9090"
+        dapr.io/log-as-json: "true"
+#       dapr.io/enable-api-logging: "true"
+#       dapr.io/log-level: "debug"
+#       dapr.io/enable-profiling: "true"
       labels:
         app: subscriber
     spec:
