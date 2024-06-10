@@ -14,9 +14,7 @@ brew install skaffold
 ### Install Redis
 Install Redis using Helm:
 ```bash
-helm repo add bitnami https://charts.bitnami.com/bitnami
-helm repo update
-helm install redis bitnami/redis --set cluster.enabled=false --set replica.replicaCount=0 --set fullnameOverride=dapr-dev-redis
+helm repo add bitnami https://charts.bitnami.com/bitnami && helm repo update && helm install redis bitnami/redis --set cluster.enabled=false --set replica.replicaCount=0 --set fullnameOverride=dapr-dev-redis
 ```
 
 ## Build the Application
@@ -24,14 +22,14 @@ This application comprises a Python app that generates messages and a Node app t
 
 Clone the repository:
 ```bash
-   git clone git@github.com:bibryam/dapr-skaffold.git
-   cd dapr-skaffold
+git clone git@github.com:bibryam/dapr-skaffold.git
+cd dapr-skaffold
 ```
 
 Build the Java applications in their respective directories:
 ```bash
-   mvn clean install
- ```
+mvn clean install
+```
 
 ## Deployment
 To deploy the application, run the following command:
