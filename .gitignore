@@ -1,3 +1,6 @@
 .idea/
 publisher/target
+publisher/.dapr
 subscriber/target
+subscriber/.dapr
+*.iml

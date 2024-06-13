@@ -27,7 +27,7 @@ public class Controller {
         return Mono.fromSupplier(() -> {
             try {
                 int orderId = cloudEvent.getData().getOrderId();
-                logger.info("Order received: " + orderId);
+                logger.info("<- Order received: " + orderId);
                 return ResponseEntity.ok("SUCCESS");
             } catch (Exception e) {
                 throw new RuntimeException(e);

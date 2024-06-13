@@ -1,11 +1,14 @@
 version: 1
+common:
+  resourcesPath: ./common/local
+  env:
+    DEBUG: true
 apps:
-  - appDirPath: ./publisher
-    appID: publisher
+  - appID: publisher
+    appDirPath: ./publisher
     appPort: 5001
-    containerImage: docker.io/bibryam/publisher:latest
-    createService: true
-  - appDirPath: ./subscriber
-    appID: subscriber
+    command: ["java", "-jar", "target/Publisher-0.0.1-SNAPSHOT.jar"]
+  - appID: subscriber
+    appDirPath: ./subscriber
     appPort: 5002
-    containerImage: docker.io/bibryam/subscriber:latest
+    command: ["java", "-jar", "target/Subscriber-0.0.1-SNAPSHOT.jar"]

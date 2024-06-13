@@ -29,7 +29,12 @@ public class Controller {
         client = new DaprClientBuilder().build();
     }
 
-    // Publish messages 
+    // Package-private setter for testing purposes
+    void setClient(DaprClient client) {
+        this.client = client;
+    }
+
+    // Publish messages
     @PostMapping(path = "/pubsub/orders", consumes = MediaType.ALL_VALUE)
     public Mono<ResponseEntity> publish(@RequestBody(required = true) Order order) {
         return Mono.fromSupplier(() -> {
@@ -37,7 +42,7 @@ public class Controller {
             // Publish an event/message using Dapr PubSub
             try {
                 client.publishEvent(PUBSUB_NAME, "orders", order).block();
-                logger.info("Order published: " + order.getOrderId());
+                logger.info("-> Order published: " + order.getOrderId());
                 return ResponseEntity.ok("SUCCESS");
             } catch (Exception e) {
                 logger.error("Error occurred while publishing order: " + order.getOrderId());

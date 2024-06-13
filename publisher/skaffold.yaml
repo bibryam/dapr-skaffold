@@ -2,8 +2,6 @@ apiVersion: skaffold/v4beta11
 kind: Config
 metadata:
   name: publisher
-requires:
-  - path: ../deploy
 
 build:
   tagPolicy:
@@ -16,8 +14,8 @@ build:
 
 manifests:
   rawYaml:
-    - deploy/deployment.yaml
-    - deploy/service.yaml
+    - ../common/kubernetes/*
+    - deploy/*
 
 deploy:
   kubectl: {}
